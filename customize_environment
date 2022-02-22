@@ -1,0 +1,18 @@
+sudo apt update
+sudo apt install kitty-terminfo -y
+docker pull archlinux
+docker create -ti --privileged -v /home/christianscloudshell:/home/user/ archlinux
+docker start $(docker ps -a -q)
+docker exec $(docker ps -a -q) useradd -G wheel user
+docker exec $(docker ps -a -q) pacman -Syu --noconfirm
+docker exec $(docker ps -a -q) pacman -S vim nano xfce4 xfce4-goodies xorg-server-xvfb neofetch firefox kdenlive krita plank sudo base-devel git sassc zip unzip noto-fonts noto-fonts-cjk noto-fonts-extra noto-fonts-emoji simplescreenrecorder papirus-icon-theme pulseaudio pavucontrol --noconfirm
+docker cp sudoers $(docker ps -a -q):/etc/
+docker exec $(docker ps -a -q) chown root /etc/sudoers
+docker exec $(docker ps -a -q) su -c "git clone https://aur.archlinux.org/paru" -l user
+docker exec $(docker ps -a -q) su -c "chmod +x /home/user/compile-paru.sh" -l user
+docker exec $(docker ps -a -q) su -c "/home/user/compile-paru.sh" -l user
+docker exec $(docker ps -a -q) su -c "git clone https://github.com/catppuccin/gtk" -l user
+docker exec $(docker ps -a -q) su -c "git clone https://github.com/catppuccin/plank" -l user
+docker exec $(docker ps -a -q) su -c "chmod +x /home/user/install-catppuccin.sh" -l user
+docker exec $(docker ps -a -q) su -c "/home/user/install-catppuccin.sh" -l user
+docker exec $(docker ps -a -q) su -c "paru -S --noconfirm chrome-remote-desktop" -l user
