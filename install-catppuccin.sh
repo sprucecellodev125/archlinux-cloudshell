@@ -1,10 +1,10 @@
 #!/bin/bash
-cd gtk
+cd /home/user/gtk
 make build
 make package
-cd pkgs
+cd /home/user/gtk/pkgs
 sudo mv * /usr/share/themes
-#!/bin/bash
+cd /usr/share/themes
 sudo unzip '/usr/share/themes/Catppuccin.zip'
 sudo unzip '/usr/share/themes/Catppuccin-hdpi.zip'
 sudo unzip '/usr/share/themes/Catppuccin-xhdpi.zip'
@@ -85,6 +85,6 @@ cd /home/user/plank
 sudo cp -r Catppuccin /usr/share/plank/themes
 sudo cp -r Catppuccin-solid /usr/share/plank/themes
 cd /home/user/
-sudo rm -rf gtk
-rm -rf plank
-paru -S chrome-remote-desktop
+#sudo rm -rf gtk
+#rm -rf plank
+#paru -S chrome-remote-desktop
